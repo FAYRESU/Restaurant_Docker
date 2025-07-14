@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # run cmd
-RUN npm install -g nodemon & npm install
+RUN npm install -g nodemon && npm install
 
 # copy จาก ผู้ใช้ทางฝั่งซ้าย ไปยังฝั่งขวาคือ server 
 COPY . .

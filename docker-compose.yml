@@ -11,6 +11,8 @@ services:
       - "./server:/app"
       # เข้าถึงตัว node module ได้
       - "/app/node_modules"
+    command: nodemon --legacy-wacth index.js
+    restart: always
       #postgres ทำทั้งหมดให้รู้จักกัน โดยไม่ต้องระบุหมายเลข IP
       #username:password หลัง @ location db port:5432 หลัง / name db
     environment:

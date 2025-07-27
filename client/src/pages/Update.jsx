@@ -3,16 +3,16 @@ import { useParams } from "react-router";
 const Update = () => {
   //Get ID from URL
   const { id } = useParams();
-  const [restaurant, setRestaurant] = useState({
+  const [restaurants, setRestaurant] = useState({
     title: "",
     type: "",
-    img: "",
+    imageUrl: "",
   });
 
   //2.GEt Restaurant
   useEffect(() => {
     //cal api: getAllRestaurants
-    fetch("http://localhost:3000/restaurants/" + id)
+    fetch("http://localhost:5000/api/v1/restaurants/" + id)
       .then((res) => {
         //convert to json format
         console.log(res);
@@ -30,20 +30,20 @@ const Update = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRestaurant({ ...restaurant, [name]: value });
+    setRestaurant({ ...restaurants, [name]: value });
   };
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/restaurants/" + id, {
+      const response = await fetch("http://localhost:5000/api/v1/restaurants/" + id, {
         method: "PUT",
-        body: JSON.stringify(restaurant),
+        body: JSON.stringify(restaurants),
       });
       if (response.ok) {
         alert("Restaurant Updated succesfully!!!");
         setRestaurant({
           title: "",
           type: "",
-          img: "",
+          imageUrl: "",
         });
       }
     } catch (error) {
@@ -66,7 +66,7 @@ const Update = () => {
               <input
                 type="text"
                 name="title"
-                value={restaurant.title}
+                value={restaurants.title}
                 placeholder="Enter title"
                 class="w-full input input-bordered"
                 onChange={handleChange}
@@ -82,7 +82,7 @@ const Update = () => {
                 placeholder="Enter type"
                 class="w-full input input-bordered"
                 name="type"
-                value={restaurant.type}
+                value={restaurants.type}
                 onChange={handleChange}
               />
             </div>
@@ -97,13 +97,13 @@ const Update = () => {
                 class="w-full input input-bordered"
                 onChange={handleChange}
                 placeholder="Restaurant Img"
-                value={restaurant.img}
+                value={restaurants.imageUrl}
                 name="img"
               />
 
-              {restaurant.img && (
+              {restaurants.imageUrl && (
                 <div ClassName="flex items-center gap-2">
-                  <img ClassName="h-32" src={restaurant.img}></img>
+                  <img ClassName="h-32" src={restaurants.imageUrl}></img>
                 </div>
               )}
             </div>

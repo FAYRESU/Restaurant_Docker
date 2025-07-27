@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 
 const Add = () => {
-  const [restaurant, setRestaurant] = useState({
+  const [restaurants, setRestaurant] = useState({
     title: "",
     type: "",
-    img: "",
+    imageUrl: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRestaurant({ ...restaurant, [name]: value });
+    setRestaurant({ ...restaurants, [name]: value });
   };
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/restaurants", {
+      const response = await fetch("http://localhost:5000/api/v1/restaurants", {
         method: "POST",
-        body: JSON.stringify(restaurant),
+        body: JSON.stringify(restaurants),
       });
       if (response.ok) {
         alert("Restaurannt Adds succesfully!!!");
         setRestaurant({
           title: "",
           type: "",
-          img: "",
+          imageUrl: "",
         });
       }
     } catch (error) {
@@ -69,16 +69,16 @@ const Add = () => {
               </label>
               <input
                 type="text"
-                ClassName="grow"
+                className="grow"
                 class="w-full input input-bordered"
                 onChange={handleChange}
                 placeholder="Restaurant Img"
-                name="img"
+                name="imageUrl"
               />
 
-              {restaurant.img && (
-                <div ClassName="flex items-center gap-2">
-                  <img ClassName="h-32" src={restaurant.img}></img>
+              {restaurants.imageUrl && (
+                <div className="flex items-center gap-2">
+                  <img className="h-32" src={restaurants.imageUrl}></img>
                 </div>
               )}
             </div>

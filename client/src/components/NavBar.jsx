@@ -48,7 +48,9 @@ const NavBar = () => {
               ))}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Grab Restaurant</a>
+          <a href={"/"} className="btn btn-ghost text-xl">
+            Grab Restaurant
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -59,9 +61,13 @@ const NavBar = () => {
             ))}
           </ul>
         </div>
-       <div className="navbar-end flex gap-4">
-            <a href="/register" className="btn btn-outline btn-primary">Register</a>
-            <a href="/login" className="btn btn-outline btn-success">Login</a>
+        <div className="navbar-end flex gap-4">
+          <a href="/register" className="btn btn-outline btn-primary">
+            Register
+          </a>
+          <a href="/login" className="btn btn-outline btn-success">
+            Login
+          </a>
         </div>
       </div>
     </div>

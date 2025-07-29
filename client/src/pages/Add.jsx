@@ -10,11 +10,19 @@ const Add = () => {
     const { name, value } = e.target;
     setRestaurant({ ...restaurants, [name]: value });
   };
+  const newRestaurant = {
+    title: restaurants.title,
+    type: restaurants.type,
+    imageUrl: restaurants.imageUrl,
+  };
   const handleSubmit = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/v1/restaurants", {
         method: "POST",
-        body: JSON.stringify(restaurants),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newRestaurant),
       });
       if (response.ok) {
         alert("Restaurannt Adds succesfully!!!");
@@ -84,14 +92,20 @@ const Add = () => {
             </div>
 
             <div class="flex justify-center items-center my-6 space-x-4">
-              <button
+              <a
+                href={"/"}
                 type="submit"
                 class="btn bg-green-500 text-white px-6"
                 onClick={handleSubmit}
               >
                 Add
-              </button>
-              <a href={"/"} button type="button" class="btn bg-red-500 text-white px-6">
+              </a>
+              <a
+                href={"/"}
+                button
+                type="button"
+                class="btn bg-red-500 text-white px-6"
+              >
                 Cancel
               </a>
             </div>

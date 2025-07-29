@@ -34,10 +34,16 @@ const Update = () => {
   };
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/restaurants/" + id, {
-        method: "PUT",
-        body: JSON.stringify(restaurants),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/v1/restaurants/" + id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(restaurants),
+        }
+      );
       if (response.ok) {
         alert("Restaurant Updated succesfully!!!");
         setRestaurant({
@@ -109,13 +115,14 @@ const Update = () => {
             </div>
 
             <div class="flex justify-center items-center my-6 space-x-4">
-              <button
+              <a
+                href={"/"}
                 type="submit"
                 class="btn bg-green-500 text-white px-6"
                 onClick={handleSubmit}
               >
                 Add
-              </button>
+              </a>
               <a
                 href={"/"}
                 type="button"
